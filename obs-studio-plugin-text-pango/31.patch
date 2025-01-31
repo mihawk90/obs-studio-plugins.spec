@@ -1,0 +1,52 @@
+From dc21b57fe2fbb735f94340c4ddff423db0ceb6e8 Mon Sep 17 00:00:00 2001
+From: easyaspi314 <6258309+easyaspi314@users.noreply.github.com>
+Date: Wed, 22 Jan 2025 18:58:59 -0500
+Subject: [PATCH] Fix compilation on modern platforms
+
+---
+ text-pango.c     | 4 +++-
+ text-pango.h     | 2 +-
+ text-utilities.h | 2 +-
+ 3 files changed, 5 insertions(+), 3 deletions(-)
+
+diff --git a/text-pango.c b/text-pango.c
+index 3eac59e..36551da 100644
+--- a/text-pango.c
++++ b/text-pango.c
+@@ -111,7 +111,9 @@ void render_text(struct pango_source *src)
+ 
+ 	/* Allocate and initialize Cairo surface */
+ 	int stride = cairo_format_stride_for_width(CAIRO_FORMAT_ARGB32, src->width);
+-	surface_data = bzalloc(stride * src->height);
++	/* UGLY HACK: don't bzalloc(0), it causes a crash in newer OBS */
++	size_t allocsize = stride * src->height;
++	surface_data = bzalloc(allocsize != 0 ? allocsize : 1);
+ 	surface = cairo_image_surface_create_for_data(surface_data,
+ 			CAIRO_FORMAT_ARGB32,
+ 			src->width, src->height, stride);
+diff --git a/text-pango.h b/text-pango.h
+index 7b673e4..54bd74c 100644
+--- a/text-pango.h
++++ b/text-pango.h
+@@ -1,7 +1,7 @@
+ #pragma once
+ 
+ #include <obs-module.h>
+-#include <obs-scene.h>
++#include <obs.h>
+ 
+ enum {
+ 	ALIGN_LEFT = 0,
+diff --git a/text-utilities.h b/text-utilities.h
+index f4b3b84..0d79389 100755
+--- a/text-utilities.h
++++ b/text-utilities.h
+@@ -365,7 +365,7 @@ static bool read_textfile(struct pango_source *src)
+ 		return true;
+ 	}
+ 
+-	char *encoding = NULL;
++	const char *encoding = NULL;
+ 	if (encoding_header == 2) {
+ 		encoding = "UTF-16LE";
+ 	} else if (encoding_header == 3) {
