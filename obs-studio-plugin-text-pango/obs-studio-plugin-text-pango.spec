@@ -6,13 +6,8 @@
 %endif
 
 %global srcname obs-text-pango
-%global commit bc9af01217ad9baa0bdb17ecec1f15424fbdc4f8
-%global date 20250131
-
-# as of now this produces an incorrect version
-%global forgeurl https://github.com/kkartaltepe/obs-text-pango
-#Version:        1.0
-# forgemeta -iv
+%global commit 47d3139de004e29611d6db847b331ab95da40ea0
+%global date 20250316
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
@@ -20,30 +15,27 @@ Release:        1%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
-URL:            %{forgeurl}
+URL:            https://github.com/kkartaltepe/obs-text-pango
 Source0:        %{url}/archive/%{commit}.tar.gz
-Patch1:         31.patch
+Patch1:         fix-header-include.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
-
 BuildRequires:  pkgconfig(libobs)
+
 BuildRequires:  pkgconfig(pango)
 
-# For directory ownership
 Requires:       obs-studio%{?_isa}
-
 Enhances:       obs-studio%{?_isa}
 
 
 %description
 This plugin provides a text source for OBS Studio. The text is layed out and rendered using Pango.
 
+
 %prep
 %autosetup -n %{srcname}-%{commit} -p1
-# can't use this without forgemeta
-# forgeautosetup -p1
 
 
 %build
@@ -70,6 +62,9 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Thu Mar 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-1
+- Update to latest commit
+
 * Fri Jan 31 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250131.bc9af01-1
 - initial packaging
 - includes a patch to avoid SIG_TRAP on OBS 31+
