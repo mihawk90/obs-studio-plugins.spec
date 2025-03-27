@@ -11,7 +11,7 @@
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -62,6 +62,9 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Thu Mar 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-2
+- remove obs-scene.h and obs.h header entirely since it doesn't seem to be required
+
 * Thu Mar 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-1
 - Update to latest commit
 

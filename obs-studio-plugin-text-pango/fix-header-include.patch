@@ -2,12 +2,11 @@ diff --git a/text-pango.h b/text-pango.h
 index 7b673e4..54bd74c 100644
 --- a/text-pango.h
 +++ b/text-pango.h
-@@ -1,7 +1,7 @@
+@@ -1,7 +1,6 @@
  #pragma once
  
  #include <obs-module.h>
 -#include <obs-scene.h>
-+#include <obs.h>
  
  enum {
  	ALIGN_LEFT = 0,
