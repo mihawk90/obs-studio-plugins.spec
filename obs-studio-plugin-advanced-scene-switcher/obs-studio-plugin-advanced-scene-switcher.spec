@@ -8,7 +8,7 @@
 %global srcname advanced-scene-switcher
 
 Name:           obs-studio-plugin-%{srcname}
-Version:        1.29.1
+Version:        1.29.2
 Release:        1%{?dist}
 Summary:        An automation plugin for OBS Studio
 
@@ -21,8 +21,7 @@ BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  pkgconfig(libobs)
 
-# fails in libremidi, see upstream#1329
-#BuildRequires:  alsa-lib-devel
+BuildRequires:  alsa-lib-devel
 BuildRequires:  asio-devel
 BuildRequires:  json-devel
 BuildRequires:  libcurl-devel
@@ -68,5 +67,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Fri Apr 04 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.29.2-1
+- new version
+- re-enable alsa-lib-devel dependency for libremidi
+
 * Tue Mar 25 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.29.1-1
 - initial packaging
