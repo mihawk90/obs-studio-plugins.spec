@@ -9,12 +9,13 @@
 
 Name:           obs-studio-plugin-%{srcname}
 Version:        1.30.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An automation plugin for OBS Studio
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/WarmUpTill/SceneSwitcher
 Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source.tar.xz
+Patch0:         1374.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -51,7 +52,8 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 %build
 %cmake \
     -DCMAKE_BUILD_TYPE=RelWithDebInfo \
-    -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF
+    -DCMAKE_COMPILE_WARNING_AS_ERROR=OFF \
+    -DDISABLE_TWITCH_TIMESTAMP_VERIFICATION=ON
 %cmake_build
 
 
@@ -67,6 +69,11 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Wed May 28 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.30.0-2
+- adv-ss: Temporarily disable Twitch timestamp verification
+  This fixes an issue with the Twitch plugin not loading and thereby
+  deleting Twitch connections and related actions.
+
 * Tue May 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.30.0-1
 - new version
 
