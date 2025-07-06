@@ -1,0 +1,133 @@
+From 60c15c33036adf7c25569e045195282894dab4af Mon Sep 17 00:00:00 2001
+From: WarmUpTill <19472752+WarmUpTill@users.noreply.github.com>
+Date: Sun, 6 Jul 2025 00:14:17 +0200
+Subject: [PATCH] Fix crash when initially setting up tab ordering
+
+The tabOrder vector was initialized with the size of tabNames.
+Then new tabs were registered with AddSetupTabCallback() causing
+tabNames to grow but tabOrder to remain the same.
+
+Usually this is not a problem as LoadTabOrder() will be called which
+ensures that their sizes are in sync.
+
+However, when using a fresh OBS install or one with a corrupted scene
+configuration file, the on_save() callbacks are called before any
+loading callbacks.
+With the sizes of tabNames and tabOrder not being in sync this would
+lead to a crash.
+
+Fixed by adding a tabWidgetOrderValid() check within SaveTabOrder()
+before iterating over both vectors.
+The tabWidgetOrderValid() was expanded to check the sizes of both
+vectors.
+Additionally the tabOrder initialization was moved from global static
+initialization to function local static initialization to ensure that
+potential preceeding calls to AddSetupTabCallback() will be taken into
+account when setting up the tabOrder vector.
+---
+ lib/utils/tab-helpers.cpp | 50 ++++++++++++++++++++++++++++-----------
+ 1 file changed, 36 insertions(+), 14 deletions(-)
+
+diff --git a/lib/utils/tab-helpers.cpp b/lib/utils/tab-helpers.cpp
+index ffa282adb..bf72e4130 100644
+--- a/lib/utils/tab-helpers.cpp
++++ b/lib/utils/tab-helpers.cpp
+@@ -17,7 +17,11 @@ static std::vector<std::string> tabNames = {
+ 	"videoTab",        "sceneGroupTab", "transitionsTab",   "pauseTab",
+ };
+ 
+-static std::vector<int> tabOrder = std::vector<int>(tabNames.size());
++static std::vector<int> &getTabOrderVector()
++{
++	static std::vector<int> tabOrder = std::vector<int>(tabNames.size());
++	return tabOrder;
++}
+ 
+ namespace {
+ struct TabCallbacks {
+@@ -65,19 +69,14 @@ void ResetLastOpenedTab()
+ 	lastOpenedTab = -1;
+ }
+ 
+-void SaveTabOrder(obs_data_t *obj)
++static bool tabWidgetOrderValid()
+ {
+-	OBSDataArrayAutoRelease tabWidgetOrder = obs_data_array_create();
+-	for (size_t i = 0; i < tabNames.size(); i++) {
+-		OBSDataAutoRelease entry = obs_data_create();
+-		obs_data_set_int(entry, tabNames[i].c_str(), tabOrder[i]);
+-		obs_data_array_push_back(tabWidgetOrder, entry);
++	auto &tabOrder = getTabOrderVector();
++
++	if (tabNames.size() != tabOrder.size()) {
++		return false;
+ 	}
+-	obs_data_set_array(obj, "tabWidgetOrder", tabWidgetOrder);
+-}
+ 
+-static bool tabWidgetOrderValid()
+-{
+ 	auto tmp = std::vector<int>(tabNames.size());
+ 	std::iota(tmp.begin(), tmp.end(), 0);
+ 
+@@ -92,10 +91,29 @@ static bool tabWidgetOrderValid()
+ 
+ static void resetTabWidgetOrder()
+ {
++	auto &tabOrder = getTabOrderVector();
+ 	tabOrder = std::vector<int>(tabNames.size());
+ 	std::iota(tabOrder.begin(), tabOrder.end(), 0);
+ }
+ 
++void SaveTabOrder(obs_data_t *obj)
++{
++	auto &tabOrder = getTabOrderVector();
++
++	// Can happen when corrupting settings files
++	if (!tabWidgetOrderValid()) {
++		resetTabWidgetOrder();
++	}
++
++	OBSDataArrayAutoRelease tabWidgetOrder = obs_data_array_create();
++	for (size_t i = 0; i < tabNames.size(); i++) {
++		OBSDataAutoRelease entry = obs_data_create();
++		obs_data_set_int(entry, tabNames[i].c_str(), tabOrder[i]);
++		obs_data_array_push_back(tabWidgetOrder, entry);
++	}
++	obs_data_set_array(obj, "tabWidgetOrder", tabWidgetOrder);
++}
++
+ void LoadTabOrder(obs_data_t *obj)
+ {
+ 	OBSDataArrayAutoRelease defaultTabWidgetOrder = obs_data_array_create();
+@@ -107,6 +125,7 @@ void LoadTabOrder(obs_data_t *obj)
+ 	obs_data_set_default_array(obj, "tabWidgetOrder",
+ 				   defaultTabWidgetOrder);
+ 
++	auto &tabOrder = getTabOrderVector();
+ 	tabOrder.clear();
+ 	OBSDataArrayAutoRelease tabWidgetOrder =
+ 		obs_data_get_array(obj, "tabWidgetOrder");
+@@ -144,6 +163,8 @@ void SetTabOrder(QTabWidget *tabWidget)
+ 		resetTabWidgetOrder();
+ 	}
+ 
++	auto &tabOrder = getTabOrderVector();
++
+ 	auto bar = tabWidget->tabBar();
+ 	for (int i = 0; i < bar->count(); ++i) {
+ 		int curPos = findTabIndex(tabWidget, tabOrder[i]);
+@@ -153,9 +174,10 @@ void SetTabOrder(QTabWidget *tabWidget)
+ 		}
+ 	}
+ 
+-	QWidget::connect(bar, &QTabBar::tabMoved, [](int from, int to) {
+-		std::swap(tabOrder[from], tabOrder[to]);
+-	});
++	QWidget::connect(bar, &QTabBar::tabMoved,
++			 [&tabOrder](int from, int to) {
++				 std::swap(tabOrder[from], tabOrder[to]);
++			 });
+ }
+ 
+ void SetCurrentTab(QTabWidget *tabWidget)
