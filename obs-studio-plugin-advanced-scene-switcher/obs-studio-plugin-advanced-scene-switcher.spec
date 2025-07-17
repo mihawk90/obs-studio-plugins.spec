@@ -8,14 +8,13 @@
 %global srcname advanced-scene-switcher
 
 Name:           obs-studio-plugin-%{srcname}
-Version:        1.30.2
-Release:        2%{?dist}
+Version:        1.31.0
+Release:        1%{?dist}
 Summary:        An automation plugin for OBS Studio
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/WarmUpTill/SceneSwitcher
 Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source.tar.xz
-Patch0:         1408.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -69,6 +68,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Thu Jul 17 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.31.0-1
+- new version
+
 * Sat Jul 05 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.30.2-2
 - Add crashfix patch
 - Re-enable debug packages
