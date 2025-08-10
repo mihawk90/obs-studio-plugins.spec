@@ -2,7 +2,7 @@
 
 ### preparation
 
-spec=./obs-studio-plugin-###plugin_name###.spec
+spec=$(echo *.spec)
 
 if [ "$1" == "frel" ] && [ "$2" != "" ]; then
 	frel=$2
