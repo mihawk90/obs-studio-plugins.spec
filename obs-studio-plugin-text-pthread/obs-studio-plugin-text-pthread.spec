@@ -8,7 +8,7 @@
 %global srcname obs-text-pthread
 
 Name:           obs-studio-plugin-text-pthread
-Version:        2.0.5
+Version:        2.0.6
 Release:        1%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
