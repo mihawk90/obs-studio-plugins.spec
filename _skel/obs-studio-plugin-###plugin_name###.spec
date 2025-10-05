@@ -14,7 +14,7 @@ Summary:        ###Summary###
 
 License:        GPL-2.0-or-later
 URL:            ###URL###
-Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source.tar.xz
+Source0:        %{url}/archive/%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -32,7 +32,7 @@ Enhances:       obs-studio%{?_isa}
 
 
 %prep
-%autosetup -n %{srcname}-%{version}-source -p1
+%autosetup -n %{srcname}-%{version} -p1
 
 
 %build
