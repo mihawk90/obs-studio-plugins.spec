@@ -34,7 +34,7 @@ sha512sum $rpm > ${rpm%.x86_64.rpm}.sha512 && \
 \
 if [ "$1" == "install" ]; then
 	sudo dnf install $rpm
-fi 
+fi
 
 popd
 
