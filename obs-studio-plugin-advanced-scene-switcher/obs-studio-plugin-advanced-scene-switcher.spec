@@ -8,7 +8,7 @@
 %global srcname advanced-scene-switcher
 
 Name:           obs-studio-plugin-%{srcname}
-Version:        1.32.0
+Version:        1.32.1
 Release:        1%{?dist}
 Summary:        An automation plugin for OBS Studio
 
