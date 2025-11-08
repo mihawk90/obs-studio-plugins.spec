@@ -68,6 +68,15 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Sat Nov 1 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.2-1
+- new version
+
+* Wed Oct 29 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.1-1
+- new version
+
+* Wed Oct 29 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.0-1
+- new version
+
 * Thu Jul 17 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.31.0-1
 - new version
 
