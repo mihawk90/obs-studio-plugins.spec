@@ -8,7 +8,7 @@
 %global srcname obs-text-pthread
 
 Name:           obs-studio-plugin-text-pthread
-Version:        2.0.7
+Version:        2.1.0
 Release:        1%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
@@ -53,5 +53,14 @@ This plugin provides a text source for OBS Studio. The text is layed out and ren
 
 
 %changelog
-* Fri Jan 31 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.0.5
+* Sat Nov 08 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.1.0-1
+- new version
+
+* Fri Aug 29 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.0.7-1
+- new version
+
+* Sat Aug 23 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.0.6-1
+- new version
+
+* Fri Jan 31 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.0.5-1
 - initial packaging
