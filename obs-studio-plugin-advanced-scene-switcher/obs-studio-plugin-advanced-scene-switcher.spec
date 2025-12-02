@@ -1,4 +1,3 @@
-# Disable debug subpackages because we don't upload them anyway
 %bcond debug 1
 
 %if %{without debug}
@@ -9,12 +8,14 @@
 
 Name:           obs-studio-plugin-%{srcname}
 Version:        1.32.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An automation plugin for OBS Studio
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/WarmUpTill/SceneSwitcher
 Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source.tar.xz
+
+Patch0:         1494.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -68,6 +69,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.3-2
+- Add patch for PR#1494
+
 * Fri Nov 14 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.3-1
 - new version
 
