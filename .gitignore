@@ -1,0 +1,8 @@
+# By default, ignore _all_ files, but not directories
+*
+!*/
+
+# Important project files
+!.gitignore
+!*.spec
+!*.patch
