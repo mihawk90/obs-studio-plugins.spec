@@ -26,12 +26,9 @@ rm ./f_downloads/*
 spectool -g $spec --directory ./f_downloads
 cp *.patch ./f_downloads
 rm -rf ./f_upload/$frel/
-mock -r fedora-$frel-x86_64-rpmfusion_free --sources=./f_downloads --spec=$spec --resultdir=./f_upload/$frel/
+mock -r fedora-$frel-x86_64-rpmfusion_free --sources=./f_downloads --spec=$spec --resultdir=./f_upload/$frel/ --rootdir=$(pwd)/../mock_root/
 
 pushd ./f_upload/$frel && \
-rpm=$(echo obs-studio-plugin-*.fc$frel.x86_64.rpm) && \
-sha512sum $rpm > ${rpm%.x86_64.rpm}.sha512 && \
-\
 if [ "$1" == "install" ]; then
 	sudo dnf install $rpm
 fi
@@ -39,4 +36,3 @@ fi
 popd
 
 echo "All done!"
-
