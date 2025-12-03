@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-roi-ui
 Version:        1.1.1
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OBS Studio plugin to edit Encoder ROI
 
 License:        GPL-2.0-or-later
@@ -41,7 +41,8 @@ part of the video where your camera is located.
 # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=obs-roi-ui
 
 sed -i '33 a #include <obs-nix-platform.h>\n#include <qpa/qplatformnativeinterface.h>' src/external/qt-wrappers.cpp
-sed -i 's/find_qt(/find_package(Qt6 /g' CMakeLists.txt
+sed -i 's/find_qt(/find_package(Qt6 REQUIRED /g' CMakeLists.txt
+sed -i '16 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 sed -i 's/Qt::Widgets/Qt::Widgets Qt::GuiPrivate/g' CMakeLists.txt
 
 sed -i 's|obs_sceneitem_get_id(item)|QVariant::fromValue(obs_sceneitem_get_id(item))|g' src/roi-editor.cpp
@@ -70,6 +71,9 @@ sed -i '12 a #include <thread>\n#include <condition_variable>' src/encoder-previ
 
 
 %changelog
+* Wed Dec 03 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-3
+- Update patch to account for Qt6 GuiPrivate split and fix F43 build
+
 * Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-2
 - Enable `debuginfo` subpackage
 
