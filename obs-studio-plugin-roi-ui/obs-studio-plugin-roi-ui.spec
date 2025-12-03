@@ -1,5 +1,4 @@
-# Disable debug subpackages because we don't upload them anyway
-%bcond debug 0
+%bcond debug 1
 
 %if %{without debug}
 %global debug_package %{nil}
@@ -9,7 +8,7 @@
 
 Name:           obs-studio-plugin-roi-ui
 Version:        1.1.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS Studio plugin to edit Encoder ROI
 
 License:        GPL-2.0-or-later
@@ -71,5 +70,8 @@ sed -i '12 a #include <thread>\n#include <condition_variable>' src/encoder-previ
 
 
 %changelog
+* Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-2
+- Enable `debuginfo` subpackage
+
 * Sun Oct 05 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-1
 - initial packaging

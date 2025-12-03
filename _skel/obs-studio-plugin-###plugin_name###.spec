@@ -1,5 +1,4 @@
-# Disable debug subpackages because we don't upload them anyway
-%bcond debug 0
+%bcond debug 1
 
 %if %{without debug}
 %global debug_package %{nil}

@@ -1,5 +1,4 @@
-# Disable debug subpackages because we don't upload them anyway
-%bcond debug 0
+%bcond debug 1
 
 %if %{without debug}
 %global debug_package %{nil}
@@ -9,7 +8,7 @@
 
 Name:           obs-studio-plugin-media-playlist-source
 Version:        0.1.3
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Media Playlist Source plugin for OBS Studio
 
 License:        GPL-2.0-or-later
@@ -53,5 +52,8 @@ the VLC source. It is based on the the builtin Media Source.
 
 
 %changelog
+* Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 0.1.3-2
+- Enable `debuginfo` subpackage
+
 * Sun Aug 10 2025 Tarulia <mihawk.90+git@googlemail.com> - 0.1.3-1
 - initial packaging

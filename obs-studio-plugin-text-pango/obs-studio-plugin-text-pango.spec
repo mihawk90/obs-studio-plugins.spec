@@ -1,5 +1,4 @@
-# Disable debug subpackages because we don't upload them anyway
-%bcond debug 0
+%bcond debug 1
 
 %if %{without debug}
 %global debug_package %{nil}
@@ -11,7 +10,7 @@
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -62,6 +61,9 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-3
+- Enable `debuginfo` subpackage
+
 * Thu Mar 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-2
 - remove obs-scene.h and obs.h header entirely since it doesn't seem to be required
 

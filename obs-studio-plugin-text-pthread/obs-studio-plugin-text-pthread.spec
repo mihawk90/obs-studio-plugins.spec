@@ -1,5 +1,4 @@
-# Disable debug subpackages because we don't upload them anyway
-%bcond debug 0
+%bcond debug 1
 
 %if %{without debug}
 %global debug_package %{nil}
@@ -9,7 +8,7 @@
 
 Name:           obs-studio-plugin-text-pthread
 Version:        2.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -53,6 +52,9 @@ This plugin provides a text source for OBS Studio. The text is layed out and ren
 
 
 %changelog
+* Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.1.0-2
+- Enable `debuginfo` subpackage
+
 * Sat Nov 08 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.1.0-1
 - new version
 
