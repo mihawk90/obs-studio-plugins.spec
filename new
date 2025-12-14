@@ -1,0 +1,22 @@
+#!/bin/sh
+
+if [ "$1" == "" ]; then
+	echo 'Usage:'
+	echo "    $0 plugin-name"
+	exit 1
+fi
+
+new=$1
+newPath="obs-studio-plugin-${new}"
+
+set -x
+
+cp --verbose --recursive _skel "${newPath}"
+
+# cp copies the build script, but we want a symlink instead
+ln --verbose --symbolic --force '../_skel/build.sh' "${newPath}/build.sh"
+
+cd "${newPath}"
+mv --verbose "obs-studio-plugin-###plugin_name###.spec" "${newPath}.spec"
+sed --in-place "s/###plugin_name###/${new}/; s/###date###/$(date +'%a %b %d %Y')/" "${newPath}.spec"
+

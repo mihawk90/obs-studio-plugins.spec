@@ -6,3 +6,4 @@
 !.gitignore
 !*.spec
 !*.patch
+!build.sh

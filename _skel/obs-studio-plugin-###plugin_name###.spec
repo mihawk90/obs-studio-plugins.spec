@@ -53,5 +53,5 @@ Enhances:       obs-studio%{?_isa}
 
 
 %changelog
-* ###DAY MMM DD YYYY Tarulia <mihawk.90+git@googlemail.com> - ###Version-Release###
+* ###date### Tarulia <mihawk.90+git@googlemail.com> - ###Version-Release###
 - initial packaging
