@@ -29,6 +29,7 @@ rm -rf ./f_upload/$frel/
 mock -r fedora-$frel-x86_64-rpmfusion_free --sources=./f_downloads --spec=$spec --resultdir=./f_upload/$frel/ --rootdir=$(pwd)/../mock_root/
 
 pushd ./f_upload/$frel && \
+rpm=$(echo obs-studio-plugin-*.fc$frel.x86_64.rpm) && \
 if [ "$1" == "install" ]; then
 	sudo dnf install $rpm
 fi
