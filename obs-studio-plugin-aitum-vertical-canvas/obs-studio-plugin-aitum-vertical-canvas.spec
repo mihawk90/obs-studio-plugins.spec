@@ -8,12 +8,12 @@
 
 Name:           obs-studio-plugin-aitum-vertical-canvas
 Version:        1.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS Studio plugin to render a secondary vertical canvas
 
 License:        GPL-2.0-or-later
-URL:            https://github.com/Aitum/obs-vertical-canvas
-Source0:        %{url}/archive/%{version}.tar.gz
+URL:            https://aitum.tv/products/vertical
+Source0:        https://github.com/Aitum/obs-vertical-canvas/archive/%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -23,8 +23,11 @@ BuildRequires:  pkgconfig(libobs)
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  libcurl-devel
 
-Requires:       obs-studio%{?_isa}
-Enhances:       obs-studio%{?_isa}
+Requires:       obs-studio%{?_isa} >= 32.0.0
+Enhances:       obs-studio%{?_isa} >= 32.0.0
+
+# stream-suite already contains this
+Conflicts:      obs-studio-plugin-aitum-stream-suite
 
 
 %description
@@ -60,5 +63,10 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 
 
 %changelog
+* Sat Jan 31 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.6.1-2
+- Use proper product URL
+- Add Conflicts with stream-suite package
+- Add specific OBS version requirement
+
 * Tue Dec 16 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.6.1-1
 - initial packaging

@@ -8,12 +8,12 @@
 
 Name:           obs-studio-plugin-aitum-multistream
 Version:        1.0.7
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS Studio plugin to stream to multiple services
 
 License:        GPL-2.0-or-later
-URL:            https://github.com/Aitum/obs-aitum-multistream
-Source0:        %{url}/archive/%{version}.tar.gz
+URL:            https://aitum.tv/products/multi
+Source0:        https://github.com/Aitum/obs-aitum-multistream/archive/%{version}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -23,8 +23,11 @@ BuildRequires:  pkgconfig(libobs)
 BuildRequires:  qt6-qtbase-devel
 BuildRequires:  libcurl-devel
 
-Requires:       obs-studio%{?_isa}
-Enhances:       obs-studio%{?_isa}
+Requires:       obs-studio%{?_isa} >= 30.0.0
+Enhances:       obs-studio%{?_isa} >= 30.0.0
+
+# stream-suite already contains this
+Conflicts:      obs-studio-plugin-aitum-stream-suite
 
 
 %description
@@ -69,5 +72,10 @@ sed -i '89 s/^/#/' cmake/common/helpers_common.cmake
 
 
 %changelog
+* Sat Jan 31 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0.7-2
+- Use proper product URL
+- Add Conflicts with stream-suite package
+- Add specific OBS version requirement
+
 * Tue Dec 16 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0.7-1
 - initial packaging
