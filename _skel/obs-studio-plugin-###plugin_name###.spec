@@ -7,7 +7,7 @@
 %global srcname ###src_tarball_root_without_version###
 
 Name:           obs-studio-plugin-###plugin_name###
-Version:        ###Version###
+Version:        ###version###
 Release:        1%{?dist}
 Summary:        ###Summary###
 
@@ -53,5 +53,5 @@ Enhances:       obs-studio%{?_isa}
 
 
 %changelog
-* ###date### Tarulia <mihawk.90+git@googlemail.com> - ###Version-Release###
+* ###date### Tarulia <mihawk.90+git@googlemail.com> - ###version###-1
 - initial packaging
