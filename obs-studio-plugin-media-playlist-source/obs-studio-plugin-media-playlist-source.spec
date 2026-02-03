@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-media-playlist-source
 Version:        0.1.3
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Media Playlist Source plugin for OBS Studio
 
 License:        GPL-2.0-or-later
@@ -18,7 +18,7 @@ Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
-BuildRequires:  pkgconfig(libobs)
+BuildRequires:  pkgconfig(libobs) >= 31.0.0
 
 Requires:       obs-studio%{?_isa}
 Enhances:       obs-studio%{?_isa}
@@ -52,6 +52,9 @@ the VLC source. It is based on the the builtin Media Source.
 
 
 %changelog
+* Mon Feb 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.1.3-3
+- add minimum OBS version to BuildRequires
+
 * Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 0.1.3-2
 - Enable `debuginfo` subpackage
 

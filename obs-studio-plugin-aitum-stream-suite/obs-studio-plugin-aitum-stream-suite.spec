@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-aitum-stream-suite
 Version:        0.6.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS Studio plugin to manage multiple stream destinations
 
 License:        GPL-2.0-or-later
@@ -18,13 +18,13 @@ Source0:        https://github.com/Aitum/obs-aitum-stream-suite/archive/%{versio
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
-BuildRequires:  pkgconfig(libobs)
+BuildRequires:  pkgconfig(libobs) >= 32.0.0
 
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  libcurl-devel
 
-Requires:       obs-studio%{?_isa} >= 32.0.0
-Enhances:       obs-studio%{?_isa} >= 32.0.0
+Requires:       obs-studio%{?_isa}
+Enhances:       obs-studio%{?_isa}
 
 # this plugin contains both of these
 Conflicts:      obs-studio-plugin-aitum-multistream
@@ -63,5 +63,8 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 
 
 %changelog
+* Mon Feb 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.6.1-2
+- move minimum OBS version from Requires to BuildRequires
+
 * Sat Jan 31 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.6.1-1
 - initial packaging

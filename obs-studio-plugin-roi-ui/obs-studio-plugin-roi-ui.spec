@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-roi-ui
 Version:        1.1.1
-Release:        3%{?dist}
+Release:        4%{?dist}
 Summary:        OBS Studio plugin to edit Encoder ROI
 
 License:        GPL-2.0-or-later
@@ -18,7 +18,7 @@ Source0:        %{url}/archive/%{version}.tar.gz
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
-BuildRequires:  pkgconfig(libobs)
+BuildRequires:  pkgconfig(libobs) >= 30.1.0
 
 BuildRequires:  ffmpeg-free-devel
 BuildRequires:  qt6-qtbase-devel qt6-qtbase-private-devel
@@ -71,6 +71,9 @@ sed -i '12 a #include <thread>\n#include <condition_variable>' src/encoder-previ
 
 
 %changelog
+* Tue Feb 03 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-4
+- add minimum OBS version to BuildRequires
+
 * Wed Dec 03 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-3
 - Update patch to account for Qt6 GuiPrivate split and fix F43 build
 

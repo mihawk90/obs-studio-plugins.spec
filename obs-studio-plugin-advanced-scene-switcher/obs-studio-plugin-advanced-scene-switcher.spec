@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-%{srcname}
 Version:        1.32.6
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An automation plugin for OBS Studio
 
 License:        GPL-2.0-or-later
@@ -18,6 +18,9 @@ Source0:        %{url}/releases/download/%{version}/%{srcname}-%{version}-source
 BuildRequires:  cmake
 BuildRequires:  gcc
 BuildRequires:  g++
+# release notes say
+# > minimum supported OBS version is OBS 31.1.1
+# however it builds fine on EPEL's 30.0
 BuildRequires:  pkgconfig(libobs)
 
 BuildRequires:  alsa-lib-devel
@@ -32,7 +35,7 @@ BuildRequires:  opencv-devel
 BuildRequires:  procps-ng-devel
 BuildRequires:  qt6-qtbase-devel
 
-Requires:       obs-studio%{?_isa} >= 31.1.1
+Requires:       obs-studio%{?_isa}
 Enhances:       obs-studio%{?_isa}
 
 
@@ -67,6 +70,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Mon Feb 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.32.6-2
+- removed minimum version from Requires
+
 * Sat Dec 27 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.32.6-1
 - new version
 
