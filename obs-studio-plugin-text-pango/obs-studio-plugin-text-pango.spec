@@ -5,18 +5,17 @@
 %endif
 
 %global srcname obs-text-pango
-%global commit 47d3139de004e29611d6db847b331ab95da40ea0
-%global date 20250316
+%global commit 0b8506d422a2c8f4bf0c17c5ff013f8b75408ced
+%global date 20250426
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        3%{?dist}
+Release:        1%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/kkartaltepe/obs-text-pango
 Source0:        %{url}/archive/%{commit}.tar.gz
-Patch1:         fix-header-include.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -30,7 +29,8 @@ Enhances:       obs-studio%{?_isa}
 
 
 %description
-This plugin provides a text source for OBS Studio. The text is layed out and rendered using Pango.
+This plugin provides a text source for OBS Studio. The text is layed out and
+rendered using Pango.
 
 
 %prep
@@ -61,6 +61,10 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Sat Feb 07 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250426.0b8506d-1
+- Update commit
+- remove header patch as it's not upstreamed
+
 * Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-3
 - Enable `debuginfo` subpackage
 
