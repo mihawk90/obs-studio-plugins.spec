@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-tuna
 Version:        1.9.11
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Song information plugin for obs-studio
 
 License:        GPL-2.0-or-later
@@ -17,6 +17,8 @@ Source0:        %{url}/archive/v%{version}.tar.gz
 Source101:      FindLibMPDClient.cmake.patch
 Source102:      FindTaglib.cmake.patch
 Source103:      deps_CMakeLists.txt.patch
+
+Patch101:       240.patch
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -55,8 +57,6 @@ the plugin author.
 # straight from tytan's AUR package
 # https://aur.archlinux.org/cgit/aur.git/tree/PKGBUILD?h=obs-tuna&id=ae9ddb2912af9373cbbd7833cf5329743320fdd6
 
-# sed -i 's|.value()|.binaryData()|g' src/util/cover_tag_handler.cpp
-
 cp %{SOURCE101} cmake/external/FindLibMPDClient.cmake
 cp %{SOURCE102} cmake/external/FindTaglib.cmake
 cp %{SOURCE103} deps/CMakeLists.txt
@@ -86,5 +86,8 @@ sed -i '28 a find_package(LibMPDClient REQUIRED)\nfind_package(Taglib REQUIRED)'
 
 
 %changelog
+* Sat Feb 07 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.9.11-2
+- add patch for deprecated taglib usage
+
 * Fri Jan 30 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.9.11-1
 - initial packaging
