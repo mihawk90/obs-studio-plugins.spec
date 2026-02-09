@@ -21,4 +21,3 @@ cd "${path}"
 mv --verbose "obs-studio-plugin-###plugin_name###.spec" "${path}.spec"
 sed --in-place "s/###plugin_name###/${name}/; s/###version###/${ver}/g; s/###date###/$(date +'%a %b %d %Y')/" "${path}.spec"
 
-cd "${path}"
