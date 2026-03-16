@@ -7,7 +7,7 @@
 %global srcname advanced-scene-switcher
 
 Name:           obs-studio-plugin-%{srcname}
-Version:        1.32.8
+Version:        1.32.9
 Release:        1%{?dist}
 Summary:        An automation plugin for OBS Studio
 
@@ -70,6 +70,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Mon Mar 16 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.32.9-1
+- new version
+
 * Fri Feb 20 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.32.8-1
 - new version
 
