@@ -33,7 +33,7 @@ if [ "$1" == "epel" ]; then
 		--resultdir=./f_upload/$frel/ \
 		--rootdir=$(pwd)/../mock_root/
 else
-	mock -r fedora-$frel-x86_64-rpmfusion_free \
+	mock -r fedora+rpmfusion_free-$frel-x86_64 \
 		--sources=./f_downloads \
 		--spec=$spec \
 		--resultdir=./f_upload/$frel/ \
