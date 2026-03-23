@@ -7,8 +7,8 @@
 %global srcname obs-aitum-stream-suite
 
 Name:           obs-studio-plugin-aitum-stream-suite
-Version:        0.6.1
-Release:        2%{?dist}
+Version:        1.1.0
+Release:        1%{?dist}
 Summary:        OBS Studio plugin to manage multiple stream destinations
 
 License:        GPL-2.0-or-later
@@ -63,6 +63,9 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 
 
 %changelog
+* Mon Mar 23 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.0-1
+- new version
+
 * Mon Feb 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.6.1-2
 - move minimum OBS version from Requires to BuildRequires
 
