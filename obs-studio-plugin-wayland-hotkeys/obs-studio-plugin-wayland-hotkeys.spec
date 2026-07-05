@@ -1,4 +1,3 @@
-# Disable debug subpackages because we don't upload them anyway
 %bcond debug 1
 
 %if %{without debug}
@@ -9,7 +8,7 @@
 
 Name:           obs-studio-plugin-wayland-hotkeys
 Version:        1.1.0
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS Studio plugin for Wayland shortcuts
 
 License:        GPL-2.0-or-later
@@ -54,6 +53,9 @@ An OBS Studio plugin to integrate OBS hotkeys with the wayland global shortcuts 
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.0-2
+- rebuilt
+
 * Fri Nov 28 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.1.0-1
 - new version
 
