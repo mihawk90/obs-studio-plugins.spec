@@ -10,7 +10,7 @@
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -35,6 +35,7 @@ rendered using Pango.
 
 %prep
 %autosetup -n %{srcname}-%{commit} -p1
+sed -i 's/cmake_minimum_required(VERSION 3.2.0)/cmake_minimum_required(VERSION 3.10.0)/' CMakeLists.txt
 
 
 %build
@@ -61,6 +62,9 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250426.0b8506d-3
+- Bump `cmake_minimum_required` to fix FTBFS
+
 * Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250426.0b8506d-2
 - rebuilt
 
