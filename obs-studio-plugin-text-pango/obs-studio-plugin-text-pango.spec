@@ -10,7 +10,7 @@
 
 Name:           obs-studio-plugin-text-pango
 Version:        1.0^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -61,9 +61,12 @@ mv -T %{buildroot}%{_tmppath}/obs-pango/data/ %{buildroot}%{_datadir}/obs/obs-pl
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250426.0b8506d-2
+- rebuilt
+
 * Sat Feb 07 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250426.0b8506d-1
 - Update commit
-- remove header patch as it's not upstreamed
+- remove header patch as it's now upstreamed
 
 * Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.0^20250316.47d3139-3
 - Enable `debuginfo` subpackage

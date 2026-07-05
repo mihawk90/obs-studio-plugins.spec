@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-tuna
 Version:        1.9.11
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        Song information plugin for obs-studio
 
 License:        GPL-2.0-or-later
@@ -86,6 +86,9 @@ sed -i '28 a find_package(LibMPDClient REQUIRED)\nfind_package(Taglib REQUIRED)'
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.9.11-3
+- rebuilt
+
 * Sat Feb 07 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.9.11-2
 - add patch for deprecated taglib usage
 

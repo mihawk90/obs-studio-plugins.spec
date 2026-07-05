@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-roi-ui
 Version:        1.1.1
-Release:        4%{?dist}
+Release:        5%{?dist}
 Summary:        OBS Studio plugin to edit Encoder ROI
 
 License:        GPL-2.0-or-later
@@ -71,6 +71,9 @@ sed -i '12 a #include <thread>\n#include <condition_variable>' src/encoder-previ
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-5
+- rebuilt
+
 * Tue Feb 03 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-4
 - add minimum OBS version to BuildRequires
 

@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-pipewire-audio-capture
 Version:        1.2.1
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Audio device and application capture for OBS Studio
 
 License:        GPL-2.0-or-later
@@ -54,5 +54,8 @@ inputs, and applications using PipeWire.
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.2.1-2
+- rebuilt
+
 * Mon Dec 15 2025 Tarulia <mihawk.90+git@googlemail.com> - 1.2.1-1
 - initial packaging

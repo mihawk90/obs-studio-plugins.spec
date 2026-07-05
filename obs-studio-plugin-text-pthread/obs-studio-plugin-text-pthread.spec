@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-text-pthread
 Version:        2.1.0
-Release:        2%{?dist}
+Release:        3%{?dist}
 Summary:        OBS plugin for Pango-based text source
 
 License:        GPL-2.0-or-later
@@ -52,6 +52,9 @@ This plugin provides a text source for OBS Studio. The text is layed out and ren
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 2.1.0-3
+- rebuilt
+
 * Tue Dec 02 2025 Tarulia <mihawk.90+git@googlemail.com> - 2.1.0-2
 - Enable `debuginfo` subpackage
 

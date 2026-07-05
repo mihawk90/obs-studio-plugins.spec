@@ -8,7 +8,7 @@
 
 Name:           obs-studio-plugin-%{srcname}
 Version:        1.34.2
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        An automation plugin for OBS Studio
 
 License:        GPL-2.0-or-later
@@ -70,6 +70,9 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 
 
 %changelog
+* Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.34.2-2
+- rebuilt
+
 * Sat May 30 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.34.2-1
 - new version
 
