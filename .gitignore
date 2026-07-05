@@ -7,3 +7,5 @@
 !*.spec
 !*.patch
 !build.sh
+!new
+!rebuild-all

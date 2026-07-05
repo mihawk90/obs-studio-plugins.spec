@@ -1,0 +1,7 @@
+#!/bin/bash
+
+set -x
+
+specs=$(echo obs-studio-plugin-*/*.spec)
+rpmdev-bumpspec $specs
+git commit -m 'all: Rebuilt' $specs
