@@ -7,8 +7,8 @@
 %global srcname obs-aitum-stream-suite
 
 Name:           obs-studio-plugin-aitum-stream-suite
-Version:        1.1.1
-Release:        2%{?dist}
+Version:        1.2.0
+Release:        1%{?dist}
 Summary:        OBS Studio plugin to manage multiple stream destinations
 
 License:        GPL-2.0-or-later
@@ -22,6 +22,7 @@ BuildRequires:  pkgconfig(libobs) >= 32.0.0
 
 BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  libcurl-devel
+BuildRequires:  (ffmpeg-devel or ffmpeg-free-devel)
 
 Requires:       obs-studio%{?_isa}
 Enhances:       obs-studio%{?_isa}
@@ -60,9 +61,14 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 %license LICENSE
 %{_libdir}/obs-plugins/*
 %{_datadir}/obs/obs-plugins/*
-
+%{_datadir}/obs/obs-studio/themes/*
 
 %changelog
+* Wed Jul 15 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.2.0-1
+- new version
+  - add ffmpeg-devel
+  - add themes directory
+
 * Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.1.1-2
 - rebuilt
 
