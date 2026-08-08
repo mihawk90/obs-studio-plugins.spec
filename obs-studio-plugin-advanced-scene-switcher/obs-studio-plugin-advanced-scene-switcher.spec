@@ -7,7 +7,7 @@
 %global srcname advanced-scene-switcher
 
 Name:           obs-studio-plugin-%{srcname}
-Version:        1.35.1
+Version:        1.36.1
 Release:        1%{?dist}
 Summary:        An automation plugin for OBS Studio
 
@@ -61,15 +61,23 @@ current state of OBS Studio in an if-this-then-that (IFTTT) approach.
 %install
 %cmake_install
 
+# move third-party licenses from the cmake_install location
+mkdir -p %{buildroot}/%{_defaultlicensedir}/%{name}
+mv %{buildroot}/usr/advanced-scene-switcher/data/licenses/LICENSE* %{buildroot}/%{_defaultlicensedir}/%{name}
+
 
 %files
 %doc README.md
 %license LICENSE
+%license %{_defaultlicensedir}/%{name}/LICENSE*
 %{_libdir}/obs-plugins/*
 %{_datadir}/obs/obs-plugins/*
 
 
 %changelog
+* Sat Aug 08 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.36.1-1
+- new version
+
 * Tue Jul 07 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.35.1-1
 - new version
 
