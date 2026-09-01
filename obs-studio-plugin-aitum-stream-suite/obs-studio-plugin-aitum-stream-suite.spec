@@ -7,7 +7,7 @@
 %global srcname obs-aitum-stream-suite
 
 Name:           obs-studio-plugin-aitum-stream-suite
-Version:        1.2.0
+Version:        1.2.2
 Release:        1%{?dist}
 Summary:        OBS Studio plugin to manage multiple stream destinations
 
@@ -64,6 +64,9 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 %{_datadir}/obs/obs-studio/themes/*
 
 %changelog
+* Tue Sep 01 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.2.2-1
+- new version
+
 * Wed Jul 15 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.2.0-1
 - new version
   - add ffmpeg-devel
