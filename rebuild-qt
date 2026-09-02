@@ -1,0 +1,19 @@
+#!/bin/bash
+
+set -x
+
+specs=$(cat << EOF
+obs-studio-plugin-aitum-stream-suite
+obs-studio-plugin-aitum-vertical-canvas
+obs-studio-plugin-roi-ui
+obs-studio-plugin-source-dock
+obs-studio-plugin-wayland-hotkeys
+EOF
+)
+
+for spec in ${specs}; do
+	rpmdev-bumpspec ${spec}/${spec}.spec
+done
+
+git commit -m 'all: Rebuilt for Qt6' obs-studio-plugin-*/*.spec
+
