@@ -5,15 +5,17 @@
 %endif
 
 %global srcname obs-source-dock
+%global commit b78fe9ea7649ece2984bc89432f71ca5f06322d4
+%global date 20260511
 
 Name:           obs-studio-plugin-source-dock
-Version:        0.5.0
-Release:        3%{?dist}
+Version:        0.5.1^%{date}.%(c=%{commit}; echo ${c:0:7})
+Release:        1%{?dist}
 Summary:        Plugin for OBS Studio to add docks for any source
 
 License:        GPL-2.0-or-later
 URL:            https://github.com/exeldro/obs-source-dock
-Source0:        %{url}/archive/%{version}.tar.gz
+Source0:        %{url}/archive/%{commit}.tar.gz
 
 BuildRequires:  cmake
 BuildRequires:  gcc
@@ -32,11 +34,8 @@ you interact, see audio levels, change volume and control media.
 
 
 %prep
-%autosetup -n %{srcname}-%{version} -p1
+%autosetup -n %{srcname}-%{commit} -p1
 
-%if 0%{?fedora}
-    sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
-%endif
 
 %build
 %cmake \
@@ -57,6 +56,11 @@ you interact, see audio levels, change volume and control media.
 
 
 %changelog
+* Thu Sep 24 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.5.1^20260511.b78fe9e-1
+- new version
+  - update to git snapshot for post-release commit fixing a dockstate issue
+- removed CMakeLists.txt modification
+
 * Wed Sep 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.5.0-3
 - rebuilt
 
