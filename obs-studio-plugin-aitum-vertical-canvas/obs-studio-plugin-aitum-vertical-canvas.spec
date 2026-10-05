@@ -7,8 +7,8 @@
 %global srcname obs-vertical-canvas
 
 Name:           obs-studio-plugin-aitum-vertical-canvas
-Version:        1.6.3
-Release:        3%{?dist}
+Version:        1.6.5
+Release:        1%{?dist}
 Summary:        OBS Studio plugin to render a secondary vertical canvas
 
 License:        GPL-2.0-or-later
@@ -63,6 +63,9 @@ sed -i '31 a find_package(Qt6GuiPrivate REQUIRED)' CMakeLists.txt
 
 
 %changelog
+* Mon Oct 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.6.5-1
+- new version
+
 * Wed Sep 02 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.6.3-3
 - rebuilt
 
