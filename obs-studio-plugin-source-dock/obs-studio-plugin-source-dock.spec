@@ -10,7 +10,7 @@
 
 Name:           obs-studio-plugin-source-dock
 Version:        0.5.1^%{date}.%(c=%{commit}; echo ${c:0:7})
-Release:        1%{?dist}
+Release:        2%{?dist}
 Summary:        Plugin for OBS Studio to add docks for any source
 
 License:        GPL-2.0-or-later
@@ -56,6 +56,9 @@ you interact, see audio levels, change volume and control media.
 
 
 %changelog
+* Tue Oct 20 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.5.1^20260511.b78fe9e-2
+- rebuilt
+
 * Thu Sep 24 2026 Tarulia <mihawk.90+git@googlemail.com> - 0.5.1^20260511.b78fe9e-1
 - new version
   - update to git snapshot for post-release commit fixing a dockstate issue
