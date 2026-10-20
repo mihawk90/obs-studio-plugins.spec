@@ -20,7 +20,7 @@ BuildRequires:  gcc
 BuildRequires:  g++
 BuildRequires:  pkgconfig(libobs) >= 30.0.0
 
-BuildRequires:  qt6-qtbase-devel
+BuildRequires:  qt6-qtbase-private-devel
 BuildRequires:  libcurl-devel
 
 Requires:       obs-studio%{?_isa}
@@ -74,6 +74,7 @@ sed -i '89 s/^/#/' cmake/common/helpers_common.cmake
 %changelog
 * Tue Oct 20 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0.9-1
 - new version
+- require Qt6GuiPrivate libs
 
 * Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0.7-4
 - rebuilt

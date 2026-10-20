@@ -3,6 +3,7 @@
 set -x
 
 specs=$(cat << EOF
+obs-studio-plugin-aitum-multistream
 obs-studio-plugin-aitum-stream-suite
 obs-studio-plugin-aitum-vertical-canvas
 obs-studio-plugin-roi-ui
