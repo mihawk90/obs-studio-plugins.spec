@@ -7,8 +7,8 @@
 %global srcname obs-aitum-multistream
 
 Name:           obs-studio-plugin-aitum-multistream
-Version:        1.0.7
-Release:        4%{?dist}
+Version:        1.0.9
+Release:        1%{?dist}
 Summary:        OBS Studio plugin to stream to multiple services
 
 License:        GPL-2.0-or-later
@@ -72,6 +72,9 @@ sed -i '89 s/^/#/' cmake/common/helpers_common.cmake
 
 
 %changelog
+* Tue Oct 20 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0.9-1
+- new version
+
 * Sun Jul 05 2026 Tarulia <mihawk.90+git@googlemail.com> - 1.0.7-4
 - rebuilt
 
